@@ -1,0 +1,68 @@
+\chapter{Introdução}
+
+A aplicação da tecnologia de manipuladores robóticos se dá principalmente
+em ambientes de automação industrial. Porém, cada vez mais robôs estão
+substituindo humanos em serviços fora de um ambiente industrial e
+estruturado\footnote{Ambiente estruturado: é o ambiente onde os parâmetros
+necessários à operacionalidade do sistema robótico podem ser identificados e
+quantificados.}. Quando a aplicação se dá em um ambiente de automação
+industrial, este é chamado de robô industrial e quando se dá fora, ou
+\textit{in situ}, este é chamado robô de serviço \cite{ISO8373}.
+
+Apesar da grande variedade disponível hoje no mercado, os manipuladores
+industriais aplicados em operações \textit{in situ} ainda são um desafio.
+Um dos principais motivos é que os sistemas de controle destes
+manipuladores são projetados para atuar em ambientes bem estruturados, e não
+controlam efeitos externos causados pelo ambiente. Isto porque as
+estruturas de controle clássicas são capazes apenas de medir e corrigir os
+parâmteros associados ao sistema de coordenadas de referência do próprio
+manipulador.
+
+No entanto, ao executar uma determinada tarefa, os torques que atuam nas
+juntas do manipulador resultam em esforços em sua base, que por
+sua vez, pode ser pouco rígida. Neste caso, se a estrutura da base se deforma
+dinamicamente, não é possível garantir que os requisitos da tarefa sejam
+cumpridos. Parâmetros como velocidade, posição e orientação do manipulador serão
+alterados devido a flexibilidade da base.
+Portanto, considerar que o robô está instalado sobre uma base perfeitamente
+rígida pode não ser adequado em muitos casos de aplicações \textit{in situ}.
+
+Se não é possível quantificar o comportamento dinâmico da base, não garante-se
+a premissa de ambiente bem estruturado, requisito da maioria dos manipuladores
+industriais, e nos casos de grande flexibilidade o método de controle original
+pode ser insuficiente.
+Logo, a necessidade de se conhecer e quantificar o comportamento dinâmico da
+base onde será instalado um manipulador robótico pode ser crucial para garantir
+a viabilidade do serviço. 
+
+O projeto EMMA -- Metodologia de revestimento robótico de turbinas \textit{in
+situ}, tem como objetivo desenvolver um sistema robótico para realizar o
+revestimento por aspersão térmica em pás de turbinas hidráulicas,
+dentro do ambiente da turbina, i.e., aplicação de revestimento a uma pá
+instalada, reduzindo significativamente o tempo de parada da turbina
+~\citep{Freitas2017}.
+Este projeto é uma parceria da empresa Energia Sustentável do Brasil (ESBR),
+Laboratório de Controle e Automação, Engenharia de Aplicação e Desenvolvimento
+(LEAD/PEE/COPPE) e a empresa THIRTEEN ROBOTICS. O projeto tem o principal
+desafio de se transportar um sistema robótico completo para o interior do
+ambiente confinado de uma turbina do tipo Kaplan, que tem acesso limitado por
+uma escotilha de $800~mm$ de diâmetro. Logo, a solução para a base do
+manipulador deve ser leve e modular para permitir a entrada, transporte e
+montagem no interior.
+
+O sistema de revestimento por asperção térmica HVOF (\textit{High Velocity
+Oxygen Fuel}) requer os seguintes parâmetros: velocidade de $40~m/min$,
+distância da superfície de $230$ a $240~mm$ e ângulo da ferramenta de $30º$
+a $90º$.
+Cálculos de dimensionamento inicial alertaram sobre a flexibilidade considerável da
+base, o que pode comprometer a qualidade do revestimento, ao alterar os
+parâmetros controlados do processo.
+
+O dimensionamento de uma base, ainda que pouco rígida, que cumpra com os
+requisitos do sistema EMMA será o objeto central deste trabalho. Para isso,
+propõe-se um método que, a partir de uma configuração de base, permita-se
+quantificar o erro de trajetória e de velocidade e orientação do efetuador,
+devido à flexibilidade desta base. Para validar o método, realiza-se um
+experimento, por meio de instrumentação de uma base de testes, que está sendo
+montada na empresa THIRTEEN ROBOTICS.
+

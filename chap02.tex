@@ -1,0 +1,56 @@
+\chapter{Revisão Bibliográfica}
+
+Apesar da crescente aplicação de manipuladores robóticos, estes ainda são
+normalmente utilizados em ambientes bem estruturados, sem limitações de espaço e
+tamanho para construção de uma base pesada e rígida. Por esse motivo, há uma
+carência na literatura em relação a consideração de bases pouco rígidas e o efeito
+dinâmico causado no robô, salvo alguns casos para aplicações mais específicas,
+como robôs espaciais, que abordam este efeito.
+Por outro lado, manipuladores de elos e juntas elásticas já são bastante
+explorados por diversos autores.
+\citet{dwivedy2006dynamic} descrevem os métodos e modelos presentes na
+literatura para análise dinâmica de manipuladores flexíveis.
+
+Espaçonaves e satélites buscam minimizar massa e momentos de inércia de seus
+componentes, por isso possuem componentes leves e
+esbeltos, resultando em partes muito flexíveis. Estes componentes por vezes
+necessitam de serviços de reparo, reabastecimento, e aprimoramentos. Para
+executar esta tarefa, em órbita, são utilizados manipuladores espaciais, que
+capturam e manipulam a espaçonave. A flexibilidade dos componentes
+da espaçonave facilmente produz vibrações, que devido a falta de
+amortecimento atmosférico no espaço, podem se propagar e fadigar estes
+componentes.
+\citet{xu2014dynamics} propõem um modelo dinâmico para manipuladores espaciais,
+considerando um manipulador rígido entre bases rígidas, mas com apêndices
+frágeis e flexíveis, como painéis solares e antenas.
+\citet{torres1993path} propõem um planejamento de trajetória para estes
+manipuladores que minimizam as vibrações na estrutura de suporte.
+
+Outra abordagem é para sistemas chamados macro/micromanipuladores. Consistem
+em robôs de pequeno porte (micro) montados na ponta de outro maior (macro),
+geralmente usados para aumentar o alcance do sistema. \citet{book1999inverse}
+modelaram a dinâmica desse sistema, para casos de um macromanipulador não
+atuado e esbelto, e propuseram um sistema de controle para amortecer as
+vibrações do macromanipulador a partir das forças de inércia do micromanipulador.
+
+A modelagem cinemática de manipuladores industriais seguirá a abordagem clássica
+para determinação da equação de cinemática direta, pelo método de
+\citet{hartenberg1955kinematic}. Para cálculo das funções de cinemática inversa,
+há diversos métodos, dentre as opções estão: Jacobiano Transposto,
+Pseudoinversa e Mínimos Quadrados Amortecidos (\citet{buss2004introduction}) ou
+os subproblemas de Paden-Kahan (\citet{murray1994mathematical}).
+
+\citet{huston1991multibody} apresenta a dinâmica
+de sistema multicorpos, tais como mecanismos, veículos, estruturas e robôs, 
+modelados como sistemas mecânicos e estruturais e
+\citet{shabana2013dynamics} sua modelagem por componentes rígidos e
+deformáveis. A dinâmica desses sistemas é não-linear, apresentando problemas complexos que, na maioria dos casos, só pode ser resolvido numericamente.
+
+O modelo dinâmico tem como objetivo encontrar as equações de movimento.
+Uma alternativa aos métodos clássicos de Newton-Euler e D'Alembert encontra-se
+no Método de Kane (\citet{kane1985dynamics}). A sistematização deste método para sistemas mecânicos multicorpos, não lineares, é apresentada por
+\citet{lesser1995analysis}.
+
+
+
+

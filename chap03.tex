@@ -1,0 +1,163 @@
+\chapter{Método Proposto}
+
+\section{Manipulador}
+
+A estrutura mecânica de um manipulador consiste numa sequência de
+corpos rígidos (elos) e articulações (juntas); um manipulador é caracterizado
+por um \textit{braço} que garante mobilidade, um \textit{pulso} que confere
+destreza e um \textit{efetuador} que executa a tarefa requerida do robô
+\cite{Siciliano2009}.
+Neste trabalho, os elos e as juntas do manipulador serão considerados
+perfeitamente rígidos. 
+
+Ao se determinar uma tarefa, ou seja, uma trajetória do efetuador, o sistema
+de controle do robô envia a informação de torques em cada junta a fim de
+posicionar e orientar o efetuador ao longo da trajetória escolhida. Tais
+torques resultam em um par de forças de ação e reação entre o
+elo-inercial\footnote{Será definido como elo-inercial o primeiro elo, que
+fixa o robô no ambiente, a fim de não causar confusão com a base estrutural
+sobre a qual o robô está instalado.} do robô e a base sobre a qual este está fixado.
+Os requisitos da tarefa, tais como trajetória, velocidade e aceleração do
+efetuador; assim como os parâmetros do robô, como número de graus de
+liberdade, alcance, limites angulares, velocidades de rotação e torques máximos
+nas juntas, irão direcionar a escolha de manipuladores comerciais disponíveis
+capazes de realizar a tarefa desejada. O manipulador, ao executar a
+tarefa, é o responsável pelas forças e momentos externos que irão atuar sobre
+sua base.
+
+\section{Base do manipulador}
+
+O método proposto requer que seja definida a base onde será instalado o
+manipulador. 
+
+Neste trabalho será considerado como base do manipulador todo o conjunto de
+componentes que reage às cargas do manipulador, mas se deforma elasticamente.
+E estão compreendidos entre o elo-inercial do manipulador e um corpo que
+contém o referencial inercial do modelo.
+
+\section{Modelo de base rígida}
+
+Este modelo considera que o robô está instalado sobre uma base perfeitamente
+rígida. Esta etapa permite a abordagem clássica de robótica para obter os
+modelos de cinemática direta e cinemática inversa do manipulador.
+
+\subsection{Cinemática direta}
+
+A cinemática direta consiste em determinar a posição do efetuador como uma
+função da configuração das juntas e elos do manipulador. Será utilizado o método
+de Denavit-Hartenberg para o cálculo da equação de cinemética direta do
+manipulador. Esta equação relaciona a posição e orientação do efetuador
+em função das coordenadas generalizadas escolhidas.
+
+Como resultado do estudo da cinemática direta, obtem-se a \textit{trajetória
+ideal}, ou seja, aquela que o efetuador cumpre a tarefa sobre uma base
+rígida.
+
+\subsection{Cinemática inversa}
+
+Na cinemtática inversa o objetivo é o contrário: dada uma configuração para
+o efetuador, determina-se os parâmetros de junta que permitem tal configuração.
+Logo, pode-se determinar, por exemplo, a trajetória desejada do efetuador e
+obter como resultado os ângulos de cada junta que a solucionam permitindo o
+cálculo dos torques necessários para realizar a tarefa sobre aquela trajetória.
+
+Pela solução da cinemática inversa, os torques encontrados serão os dados de entrada
+das forças externas que atuam em cada junta, posteriormente utilizados no modelo
+de base flexível.
+
+\section{Modelo de base flexível}
+
+\subsection{Flexibilidade}
+O objetivo principal deste trabalho baseia-se no modelo de uma base flexível
+para o manipulador, ou seja, que se deforma elasticamente, desconsiderando
+qualquer movimento de corpo rígido. Um corpo perfeitamente rígido é uma
+idealização, geralmente assumida quando a deformação resultante do carregamento
+é muito pequena. 
+
+Neste trabalho, o interesse é quantificar a rigidez da base e avaliar os
+casos em que este valor pode afetar a qualidade ou até a viabilidade de uma
+determinada tarefa.
+
+\subsection{CAD/CAE e MEF}
+Ao se definir o projeto de uma base para o manipulador, a primeira etapa deste
+modelo é definir um sistema de coordenadas conveniente e desenhar a
+geometria que a compõe, em uma plataforma CAD/CAE (\textit{Computer Aided
+Design}/\textit{Computer Aided Engineering}). 
+A partir da geometria, são incluídas as propriedades dos materiais, restrições,
+carregamentos e malha para uma simulação numérica pelo Método de Elementos Finitos (MEF). 
+
+A base projetada para o sistema EMMA, consiste de 3 juntas: um trilho primário,
+um trilho secundário, e uma base rotativa que forma um ângulo entre os 2
+trilhos. Este sistema Prismático-Rotacional-Prismático (PRP), é responsável por
+posicionar o robô próximo a pá, em determinado número de posições a fim de
+cobrir toda a face da pá. A posição do robô pode ser definida, portanto, por um
+conjunto de coordenadas generalizadas $\textbf{r} = \{ p1, \theta, p2 \}$, que
+representam a posição no trilho primário, o ângulo da junta
+rotativa e a posição no trilho secundário, respectivamente.
+
+O modelo aplica, para cada simulação, uma força e um torque alinhados em cada
+direção do sistema de referência da base. O deslocamento resultante, em cada
+direção permite então obter uma Matriz de Rigidez $N\times N$ da estrutura, em
+função de \textbf{r} onde $N$ é o número de graus de liberdade da estrutura,
+avaliada na coordenada \textbf{r}, que representa o vetor posição do robô sobre
+a base.
+
+A partir de uma geometria complexa, a base é então reduzida a uma Matriz
+de Rigidez, podendo ser representada por uma mola linear de 6 graus de liberdade
+(3 translações e 3 rotações).
+
+\subsection{Sophia-Maple e Equações de Kane}
+\textit{Sophia} é um pacote de rotinas e
+equações para auxiliar na descrição e solução especificamente de problemas
+mecânicos.
+Fornece um procedimento direto para se descrever matematicamente um
+mecanismo e também se chegar rapidamente às equações de movimento do sistema.
+Este pacote foi implementado no programa de álgebra simbólica
+Maple\textsuperscript{\textregistered} pelo professor Martin
+Lesser\footnote{Martin Lesser é professor de Mecânica do Royal Institute of
+Technology, em Estocolmo na Suécia.}, descrevendo-o em seu livro intitulado
+\textit{The Analysis of Complex Nonlinear Mechanical
+Systems}\cite{lesser1995analysis}, e será utilizado no modelo do
+sistema base-robô para se chegar às equações de movimento, pelo Método de
+Kane. 
+
+O método de Kane oferece as vantagens dos métodos de Newton-Euler e de
+Lagrange, mas sem as desvantagens.
+Com o uso de forças generalizadas, a necessidade de examinar forças de interação
+restrição entre corpos é eliminada. Uma vez que o método de Kane não implica no
+uso de funções energéticas, a diferenciação necessária para calcular velocidades
+e acelerações podem ser obtidas através do uso de algoritmos baseados em
+produtos vetoriais. O método de Kane fornece um meio elegante para desenvolver
+as equações de dinâmica para sistemas multicorpos que se prestam à computação
+numérica automatizada.
+(\citet{huston1991multibody})
+
+Apesar de ter uma formulação mais complexa que os
+outros métodos, este pode ser melhor sistematizado para dinâmica de
+multicorpos, utilizando as rotinas do pacote de subrotinas
+especificamente desenvolvido por \citet{lesser1995analysis} para
+essa finalidade, Sophia-Maple.
+
+Os torques obtidos na análise do modelo de base rígida são fornecidos para
+resolver o sistema de equações de movimento. Devido à complexidade do sistema de
+equações e não-linearidades, a solução será dada por método numérico.
+
+O efeito dinâmico da base, modelada como uma mola de 6 graus de liberdade, irá
+revelar a diferença de trajetória entre os dois modelos de base e permitirá
+quantificar essa diferença, em termos de posições, orientações e velocidades do
+efetuador.
+
+\section{Validação Experimental}
+
+A fim de se buscar uma validação experimental do método proposto, será realizado
+um experimento.
+Acelerômetros fixados na placa-base do robô permitirão avaliar o comportamento
+dinâmico da base. O experimento consistirá em definir uma trajetória do
+efetuador, idêntica a do modelo teórico e coletar as acelerações de um ponto
+da base no sistema de referência. 
+
+Um modelo de base flexível correspondente deve ser realizado, e como resultado,
+obter as acelerações no mesmo ponto analisado no modelo físico. A comparação
+dos resultado teóricos e experimentais permitirá a discussão sobre a validação
+do método proposto.
+

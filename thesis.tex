@@ -1,0 +1,57 @@
+\documentclass[msc,numbers]{coppe}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{pdflscape}
+
+\makelosymbols
+\makeloabbreviations
+
+\begin{document}
+  \title{Avaliação da dinâmica de um manipulador robótico sobre bases flexíveis}
+  \foreigntitle{Thesis Title}
+  \author{Estevão}{Fróes Ferrão}
+  \advisor{Prof.}{Fernando}{ Augusto de Noronha Castro Pinto}{D.Sc.}
+  %\advisor{Prof.}{Nome do Segundo Orientador}{Sobrenome}{Ph.D.}
+  %\advisor{Prof.}{Nome do Terceiro Orientador}{Sobrenome}{D.Sc.}
+
+  \examiner{Prof.}{Nome do Primeiro Examinador Sobrenome}{D.Sc.}
+  \examiner{Prof.}{Nome do Segundo Examinador Sobrenome}{Ph.D.}
+  \examiner{Prof.}{Nome do Terceiro Examinador Sobrenome}{D.Sc.}
+  \examiner{Prof.}{Nome do Quarto Examinador Sobrenome}{Ph.D.}
+  \examiner{Prof.}{Nome do Quinto Examinador Sobrenome}{Ph.D.}
+  \department{PEM}
+  \date{02}{2017}
+
+  \keyword{Primeira palavra-chave}
+  \keyword{Segunda palavra-chave}
+  \keyword{Terceira palavra-chave}
+
+  \maketitle
+  
+  %\frontmatter
+  %\include{dedic}
+  %\include{thanks}
+  %\include{resumo}
+  %\include{abstract}
+  \tableofcontents
+  %\listoffigures
+  %\listoftables
+  \printlosymbols
+  \printloabbreviations
+
+  \mainmatter
+  \include{chap01}
+  \include{chap02}
+  \include{chap03}
+  \include{chap04}
+  \include{chap05}
+
+   \backmatter
+   \bibliographystyle{coppe-unsrt}
+   \renewcommand\bibname{Referências}
+   \bibliography{thesis}
+
+%   \appendix
+%   \include{appenA}
+  \end{document}
